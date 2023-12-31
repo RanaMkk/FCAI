@@ -1,0 +1,19 @@
+[6] read x; {input an integer}
+ (ID)
+[7] if 0<x then {compute only if x>=1}
+ (ID)
+[8] fact:=1;
+ (ID)
+[9] repeat
+ (ID)
+[10] fact := fact * x;
+ (ID)
+[11] x:=x-1
+ (ID)
+[12] until x=0;
+ (ID)
+[13] write fact {output factorial}
+ (ID)
+[14] end
+ (ID)
+[14]  (EndFile)
