@@ -47,7 +47,7 @@ It repeats a block of statements until the specified boolean condition is true.
 
 The if statement in TINY follows the syntax:
 ```
-if (boolean) then [else] end
+if (boolean) then stmtseq [ else stmtseq ] end
 ```
 
 It allows conditional execution of statements based on a boolean condition.
@@ -60,6 +60,24 @@ Variable names in TINY can include only alphabetic characters (a:z or A:Z) and u
 
 TINY does not support procedures, and there are no explicit declarations for variables. Variables are implicitly declared when assigned a value.
 
----
+## 10. Grammar Rules
 
-This document outlines the rules and specifications of the TINY programming language. It serves as a reference for implementing the scanner and ensuring the correct interpretation of TINY source code during the compilation process.
+The grammar rules for the TINY programming language are specified below:
+
+```
+program -> stmtseq
+stmtseq -> stmt { ; stmt }
+stmt -> ifstmt | repeatstmt | assignstmt | readstmt | writestmt
+ifstmt -> if expr then stmtseq [ else stmtseq ] end
+repeatstmt -> repeat stmtseq until expr
+assignstmt -> identifier := expr
+readstmt -> read identifier
+writestmt -> write expr
+expr -> mathexpr [ (<|=) mathexpr ]
+mathexpr -> term { (+|-) term }    (left associative)
+term -> factor { (*|/) factor }    (left associative)
+factor -> newexpr { ^ newexpr }    (right associative)
+newexpr -> ( mathexpr ) | number | identifier
+```
+
+This document outlines the rules and specifications of the TINY programming language, including syntax, semantics, and grammar rules. It serves as a reference for implementing the compiler components and ensuring correct interpretation of TINY source code during the compilation process.
